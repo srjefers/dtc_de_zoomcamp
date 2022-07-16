@@ -9,6 +9,8 @@ sudo docker run -it \
   --name pg-database \
   postgres:13
 
+# sudo docker start /pg-database
+
 # Running pgcli
 pgcli -h localhost -p 5432 -u root -d ny_taxi
 
@@ -21,5 +23,36 @@ sudo docker run -it \
   --name pgadmin \
   dpage/pgadmin4
 
+# sudo docker start /pgadmin
+
 # Building docker network
 docker network create pg-network1
+
+# Cast jupyter notebook to script
+jupyter nbconvert --to=script upload-data.ipynb
+
+# executing script
+URL="https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet"
+
+python3 ingest_data.py \
+  --user=root \
+  --password=toor \
+  --host=localhost \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_trips \
+  --url=${URL}
+
+#
+sudo docker build -t taxi_ingest:v001 .
+
+sudo docker run -it \
+  --network=pg-network1 \
+  taxi_ingest:v001 \
+    --user=root \
+    --password=toor \
+    --host=pg-database \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_trips \
+    --url=${URL}
