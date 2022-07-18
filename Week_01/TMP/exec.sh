@@ -56,3 +56,6 @@ sudo docker run -it \
     --db=ny_taxi \
     --table_name=yellow_taxi_trips \
     --url=${URL}
+
+
+export GOOGLE_APPLICATION_CREDENTIALS=
