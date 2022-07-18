@@ -33,7 +33,7 @@ def main(params):
         batch_df.tpep_dropoff_datetime = pd.to_datetime(batch_df.tpep_dropoff_datetime)
         
         if indx == 0:
-            batch_df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
+            batch_df.head(n=0).to_sql(name=table_name, con=engine, if_exists='replace')
             batch_df.to_sql(name=table_name, con=engine, if_exists='append')
         else:
             batch_df.to_sql(name=table_name, con=engine, if_exists='append')
