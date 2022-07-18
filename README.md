@@ -1,5 +1,20 @@
 # DTC Data Engineering ZoomCamp
 
+## Proposal Architecture on GCP
+<p align="center">
+    <img width="700" alt="Alacritty Logo" src="https://raw.githubusercontent.com/srjefers/dtc_de_zoomcamp/main/Proposal_Architecture.jpg">
+</p>
+
+## Tech Stack
+* Goocle Cloud Platform
+* Terraform
+* Docker
+* SQL
+* Airflow
+* dbt
+* Spark
+* Kafka
+
 ## Week 01
 ### _Intro and Prerequisites_
 * Setting up the Environment
@@ -58,13 +73,3 @@
 * Consumer-Producer
 * Kafka Streams
 * Kafka Connect
-
-## Tech Stack
-* Goocle Cloud Platform
-* Terraform
-* Docker
-* SQL
-* Airflow
-* dbt
-* Spark
-* Kafka
