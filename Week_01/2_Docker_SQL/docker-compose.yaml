@@ -9,17 +9,23 @@ services:
       - "./ny_taxi_postgres_data:/var/lib/postgresql/data:rw"
     ports:
       - "5432:5432"
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=root
-    ports:
-      - "8080:80"
+    networks:
+      - airflow-net
+  #pgadmin:
+  #  image: dpage/pgadmin4
+  #  environment:
+  #    - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+  #    - PGADMIN_DEFAULT_PASSWORD=root
+  #  ports:
+  #    - "8080:80"
 
-networks: 
-  default: 
-    external: 
-      name: pg-network1 
+#networks: 
+#  default: 
+#    external: 
+#      name: pg-network1 
+networks:
+  airflow-net:
+    external:
+      name: 2_airflow_default
 
-  
+# 2_airflow_default
